@@ -9,6 +9,10 @@ export const PokemonContainer = styled.div`
     border-radius:0px 0px 0px 0px;
     padding-top: 60px;
     text-align: center;
+<<<<<<< HEAD
+=======
+
+>>>>>>> e1117e4e8ada3716aeacaa20bb8305a600e472a1
     &.normal {
         background-color: #6d6d4e;
     }
@@ -91,7 +95,11 @@ export const PokemonHeader = styled.div`
 
 export const PokemonImage = styled.img`
     display: flex;
+<<<<<<< HEAD
     width: 300px;
+=======
+    width: 200px;
+>>>>>>> e1117e4e8ada3716aeacaa20bb8305a600e472a1
     src: ${ props => props.img};
 `
 
@@ -100,6 +108,10 @@ export const PokemonMain = styled.div`
     height: 60%;
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
+=======
+    justify-content: center;
+>>>>>>> e1117e4e8ada3716aeacaa20bb8305a600e472a1
     align-items: center;
     border-radius: 20px 20px 0px 0px;
     background-color: white;
@@ -115,12 +127,16 @@ export const PokemonStats = styled.div`
     align-items: center;
     width: 50%;
     height: 80%;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e1117e4e8ada3716aeacaa20bb8305a600e472a1
     @media (max-width: 768px){
       width: 80%;
     }
 `
 export const ListStats = styled.ul`
+<<<<<<< HEAD
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -141,6 +157,24 @@ export const StatsBar  = styled.progress`
     width: 50%;
     padding-left: 10px;
     padding-right: 10px;
+=======
+    list-style: none;
+    width: 80%;
+    padding: 10px;
+    li{
+        padding-top: 20px;
+        width: 100%;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+
+`
+
+export const StatsBar  = styled.progress`
+    width: 70%;
+    padding: 0px 10px;
+>>>>>>> e1117e4e8ada3716aeacaa20bb8305a600e472a1
     -webkit-appearance: none;
     &::-webkit-progress-bar{
         background-color: white;
@@ -159,6 +193,7 @@ export const StatsBar  = styled.progress`
 
     }
 
+<<<<<<< HEAD
     @keyframes progress {
       0%{
         width: 0%;
@@ -167,6 +202,8 @@ export const StatsBar  = styled.progress`
         width: 100%;
       }
     }
+=======
+>>>>>>> e1117e4e8ada3716aeacaa20bb8305a600e472a1
       
 `
 

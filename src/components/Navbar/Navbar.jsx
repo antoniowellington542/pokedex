@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from 'next/link';
 import {useRouter} from "next/router";
-import {VscMenu} from 'react-icons/vsc'
+import {VscMenu} from 'react-icons/vsc';
 import {
     NavbarContainer, 
     Logo, 

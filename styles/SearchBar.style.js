@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const SearchForm = styled.form`
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,3 +40,23 @@ export const SearchButton = styled.button`
     background-color: transparent;
 
 `;
+
+export const SearchResult = styled.div`
+    position: absolute;
+    top: -90%;
+    left: 10%;
+    text-align: center;
+    transform: translateY(90%);
+    border-top: 1px solid black;
+    width: 85%;
+    height: ${props=>(props.show != "" ? "100px": "0px")};
+    background-color: white;
+    color: black;
+
+    div{
+        position: absolute;
+        margin-top: 1px;
+        border: 2px solid red;
+    }
+`;
+

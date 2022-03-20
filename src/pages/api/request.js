@@ -4,10 +4,7 @@ export const ListPokemons = async (index) =>{
       
     const [pokemons] = await Promise.all([listPokemonsResponse]);
   
-      
     const pokemonsJson = await pokemons.json();
-      
-    console.log(pokemonsJson.results);
       
     return pokemonsJson.results;
   }
@@ -22,8 +19,6 @@ export const dataPokemon = async (name) =>{
       
   const pokemonJson = await pokemon.json();
       
-  //console.log(pokemonJson);
-      
   return pokemonJson;
 }
 
@@ -36,8 +31,19 @@ export const aboutPokemon = async (id) =>{
       
   const pokemonJson = await pokemon.json();
       
-  //console.log(pokemonJson);
+  return pokemonJson;
+}
+
+export const SearchPokemon = async () =>{
+  
+  const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=898`);
+  
+  const [pokemon] = await Promise.all([pokemonResponse]);
+  
+      
+  const pokemonJson = await pokemon.json();
       
   return pokemonJson;
 }
+
 
