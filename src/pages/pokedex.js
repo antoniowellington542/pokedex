@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { ListPokemons } from "./api/request.js";
 
 import Card from "../components/Card/Card";
-import Progressbar from "../components/Progressbar/ProgressBar";
-import Pagination from "../components/Pagination/Pagination.jsx";
+import Pagination from "../components/Pagination/Pagination";
+import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 
 const Box = styled.div`
     margin: 40px auto;
@@ -32,20 +32,15 @@ const Pokedex = () => {
 
     
     useEffect(()=>{
+        getPokemons();
         setLoading(true);
         setValueBar(0);
-        LoadingTimeApi("Carregando Dados", getPokemons());
         reloading(); 
     }, [offset]);
 
     const getPokemons = async () =>{
         const pokemons_list = await ListPokemons(offset);
         setPokemons(pokemons_list);
-    }
-
-    function LoadingTimeApi(mensagem, getApi){
-        if(mensagem) return console.error(mensagem);
-        getApi();
     }
 
     const reloading = () => {
@@ -64,21 +59,7 @@ const Pokedex = () => {
 
     if(loading){
         return(
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                gap:  "10px",
-                alignItems: "center",
-                margin: "20px auto",
-                width: "80%",
-                height: "80vh",
-                minWidth: "280px",
-                borderRadius: "10px"
-            }}>
-                <img style={{borderBottom: "2px solid black"}} src="https://i.imgur.com/aMz1Qtu.gif"/>
-                <Progressbar width={valueBar}/>
-            </div>
+            <LoadingScreen width={valueBar} />
         );
     }
 

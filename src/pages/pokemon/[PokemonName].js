@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {useRouter} from "next/router";
 import { aboutPokemon } from "../api/request";
-import Progressbar from "../../components/Progressbar/ProgressBar";
 import { 
     AtributesPokemon, 
     ListStats, 
@@ -12,6 +11,7 @@ import {
     PokemonStats, 
     StatsBar 
 } from "../../../styles/Pokemon.style";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 
 const Pokemon = () =>{
 
@@ -22,10 +22,11 @@ const Pokemon = () =>{
     const[valueBar, setValueBar] = useState(0);
 
     const router = useRouter();
-    const {id} = router.query;
+    const {PokemonName} = router.query;
     useEffect(()=>{
         getPokemon();
-
+        setLoading(true);
+        setValueBar(0);
         const interval = setInterval(()=> {
             setValueBar(oldValue => {
                 const newValue = (oldValue + 20);
@@ -39,18 +40,20 @@ const Pokemon = () =>{
             
         }, 700);
 
-    }, []);
+    }, [router]);
     
     const getPokemon = async () =>{
         const {
+            id,
             name,
             weight,
             height,
             stats,
             types
-        }= await aboutPokemon(id);
+        }= await aboutPokemon(PokemonName);
 
         setPokemon({
+            id,
             name,
             weight: weight / 10 + 'kg',
             height: height / 10 + 'm',
@@ -68,28 +71,14 @@ const Pokemon = () =>{
 
     if(loading){
         return(
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                gap:  "10px",
-                alignItems: "center",
-                margin: "20px auto",
-                width: "80%",
-                height: "80vh",
-                minWidth: "280px",
-                borderRadius: "10px"
-            }}>
-                <img style={{borderBottom: "2px solid black"}} src="https://i.imgur.com/aMz1Qtu.gif"/>
-                <Progressbar width={valueBar}/>
-            </div>
+            <LoadingScreen width={valueBar}/>
         );
     }
 
     return(
         <PokemonContainer className={headerColor}>
             <PokemonHeader>
-                <PokemonImage src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} />
+                <PokemonImage src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} />
             </PokemonHeader>
             <h1 style={{
                 color: "white",
@@ -98,7 +87,7 @@ const Pokemon = () =>{
             <PokemonMain>
                 <AtributesPokemon>
                     <ListStats>
-                        <li>ID #{id}</li>
+                        <li>ID #{pokemon.id}</li>
                         <li>Weight: {pokemon.weight}</li>
                         <li>Height: {pokemon.height}</li>
                     </ListStats>

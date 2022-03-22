@@ -9,6 +9,7 @@ const Card = ({name}) =>{
 
     const[idPokemon, setIdPokemon] = useState([]);
     const[pokemonType, setPokemonType] = useState([]);
+    const[pokemonName, setPokemonName] = useState("");
     useEffect(()=>{
         imgsPokemon_list();
 
@@ -20,12 +21,13 @@ const Card = ({name}) =>{
         console.log(pokemons);
         setIdPokemon(pokemons.id);
         setPokemonType(pokemons.types[0].type.name);
+        setPokemonName(pokemons.name);
     }
 
     
     return(
         <>
-            <Link href={`/pokemon/${idPokemon}`}>
+            <Link href={`/pokemon/${pokemonName}`}>
                 <CardContainer>
                     <CardHeader className={pokemonType}>
                         <CardTitle textColor="white" >#{idPokemon}</CardTitle>

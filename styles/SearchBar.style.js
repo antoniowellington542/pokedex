@@ -43,20 +43,23 @@ export const SearchButton = styled.button`
 
 export const SearchResult = styled.div`
     position: absolute;
-    top: -90%;
+    top: 100%;
     left: 10%;
     text-align: center;
-    transform: translateY(90%);
-    border-top: 1px solid black;
+    
     width: 85%;
-    height: ${props=>(props.show != "" ? "100px": "0px")};
+    height: ${props=>(props.show != "" ? "150px": "0px")};
     background-color: white;
     color: black;
-
+    overflow: auto;
+    border-radius: 0rem 0rem 2rem 2rem;
     div{
-        position: absolute;
-        margin-top: 1px;
-        border: 2px solid red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        height: 50px;
+        background-color: white;
     }
 `;
 

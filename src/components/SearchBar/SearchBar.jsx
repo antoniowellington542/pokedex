@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react"
-import { SearchPokemon } from "../../pages/api/request";
+import {SearchPokemon } from "../../pages/api/request";
+import Link from "next/link";
 import { SearchButton, SearchForm, SearchInput, SearchResult } from "../../../styles/SearchBar.style";
 
 const SearchBar = () =>{
   const[input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(false);
   const [listPokemonsSearch, setListPokemonSearch] = useState([]);
   useEffect(()=>{
     getSearch();
   }, []);
 
+
   const getSearch = async () =>{
     const response = await SearchPokemon();
     setListPokemonSearch(response.results);
-    console.log(listPokemonsSearch);
+    //console.log(listPokemonsSearch);
   }
 
   const onFormSubmit = e => {
@@ -54,12 +56,11 @@ const SearchBar = () =>{
       />
       <SearchResult show={input}>
       {listPokemonsSearch.map(p=>(
-        <>
-          <div>
-            {p.name.startsWith(input) && input != "" ? p.name: null}
-          </div>
-          <br></br>
-        </>
+        p.name.startsWith(input) && input != "" ? 
+        <div>
+          <Link href={`/pokemon/${p.name}`}>{p.name}</Link>
+        </div>
+        : null
       ))}
       </SearchResult>
     </SearchForm>
