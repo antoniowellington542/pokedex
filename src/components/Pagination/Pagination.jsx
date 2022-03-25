@@ -1,4 +1,4 @@
-import { ButtonController, ButtonPagination, ListItem, ListPagination, PaginationContainer } from "../../../styles/Pagination.style";
+import { ButtonController, ButtonPagination, ListItem, ListPagination, PaginationContainer } from "./Pagination.style";
 
 const MAX_ITEMS = 9;
 const MAX_LEFT = (MAX_ITEMS - 1)/2;

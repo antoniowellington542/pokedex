@@ -1,7 +1,13 @@
 import { dataPokemon } from "../../pages/api/request";
 import Link from "next/link";
 
-import { CardBody, CardContainer, CardHeader, CardImg, CardTitle } from "../../../styles/Card.style";
+import { 
+    CardBody, 
+    CardContainer, 
+    CardHeader, 
+    CardImg, 
+    CardTitle 
+} from "./Card.style";
 import { useEffect, useState } from "react";
 
 
@@ -23,7 +29,6 @@ const Card = ({name}) =>{
         setPokemonType(pokemons.types[0].type.name);
         setPokemonName(pokemons.name);
     }
-
     
     return(
         <>

@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Link from 'next/link';
 import {useRouter} from "next/router";
 import {VscMenu} from 'react-icons/vsc';
+import AppContext from "../../AppContext/Context";
 import {
     NavbarContainer, 
     Logo, 
     Menu, 
     MenuLink,
     MenuLogo 
-} from "../../../styles/Navbar.style";
+} from "./Navbar.style";
 import SearchBar from "../SearchBar/SearchBar";
 
 
 const Navbar = () => {
-
+    
+    const {user} = useContext(AppContext);
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
     return(

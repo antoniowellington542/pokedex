@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react"
-import {SearchPokemon } from "../../pages/api/request";
+import {SearchPokemon, dataPokemon } from "../../pages/api/request";
 import Link from "next/link";
-import { SearchButton, SearchForm, SearchInput, SearchResult } from "../../../styles/SearchBar.style";
+import { 
+  SearchButton,
+  SearchForm, 
+  SearchInput, 
+  SearchResult 
+} from "./SearchBar.style";
 
 const SearchBar = () =>{
   const[input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(false);
   const [search, setSearch] = useState(false);
   const [listPokemonsSearch, setListPokemonSearch] = useState([]);
+  
   useEffect(()=>{
     getSearch();
   }, []);
@@ -54,9 +60,9 @@ const SearchBar = () =>{
         barOpened={barOpened}
         placeholder="Procure por um Pokemon..."
       />
-      <SearchResult show={input}>
+      <SearchResult barOpened={barOpened} show={input} >
       {listPokemonsSearch.map(p=>(
-        p.name.startsWith(input) && input != "" ? 
+        p.name.startsWith(input) && input != "" && barOpened ? 
         <div>
           <Link href={`/pokemon/${p.name}`}>{p.name}</Link>
         </div>

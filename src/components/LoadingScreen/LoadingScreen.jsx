@@ -1,4 +1,11 @@
-import { ContainerBar, ContainerLoadingScreen, ContainerLoadingBar, Bar, LoadingImage, Text } from "../../../styles/LoadingScreen.style";
+import { 
+    ContainerBar, 
+    ContainerLoadingScreen, 
+    ContainerLoadingBar, 
+    Bar, 
+    LoadingImage, 
+    Text 
+} from "./LoadingScreen.style";
 
 const LoadingScreen = ({width}) =>{
         return(

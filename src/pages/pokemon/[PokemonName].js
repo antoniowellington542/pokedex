@@ -30,7 +30,7 @@ const Pokemon = () =>{
         const interval = setInterval(()=> {
             setValueBar(oldValue => {
                 const newValue = (oldValue + 20);
-                if(newValue > 100){
+                if(newValue >= 100){
                     clearInterval(interval);
                     setLoading(false);
                 }

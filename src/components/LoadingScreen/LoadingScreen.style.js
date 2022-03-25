@@ -29,7 +29,7 @@ export const ContainerLoadingBar = styled.div`
 
 
 export const ContainerBar = styled.div`
-    padding: 1px;
+    padding: 2px;
     width: 20%;
     height: 25px;
     border: 2px solid black;
@@ -42,11 +42,11 @@ const ld = keyframes`
 
 export const Bar = styled.div`
     height: 100%;
-    background-color: red;
+    background-color: #B0C4DE;
     border-radius: 20px;
     animation: ${ld} 4s forwards cubic-bezier(0,0,0,0);
-    text-align: right;
-    padding-right: 10px;
+    text-align: center;
+    color: black;
 
 `;
 

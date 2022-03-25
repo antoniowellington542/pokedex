@@ -48,17 +48,22 @@ export const SearchResult = styled.div`
     text-align: center;
     
     width: 85%;
-    height: ${props=>(props.show != "" ? "150px": "0px")};
+    max-height: 300px;  
     background-color: white;
     color: black;
     overflow: auto;
     border-radius: 0rem 0rem 2rem 2rem;
+
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: ${props => (props.barOpened && props.show != "" ? "1px solid black": null)};
+    
     div{
         display: flex;
         justify-content: center;
         align-items: center;
         border-bottom: 1px solid black;
-        height: 50px;
+        height: 80px;
         background-color: white;
     }
 `;
