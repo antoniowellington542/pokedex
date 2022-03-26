@@ -1,20 +1,28 @@
+import React from 'react';
 import '../../styles/globals.css';
-import AppProvider from '../AppContext/Provider';
+import { LoadingProvider } from '../AppContext/LoadingContext';
+import { PaginationProvider } from '../AppContext/PaginationContext';
+import PokemonProvider from '../AppContext/PokemonContext';
 import Navbar from '../components/Navbar/Navbar';
 
-function MyApp({ Component, pageProps }) {
+const  MyApp = ({ Component, pageProps })=> {
+
   return (
-    <AppProvider>
-      <div style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        gap: "0px"
-      }}>
-        <Navbar/>
-        <Component {...pageProps} />
-      </div>
-    </AppProvider>
+    <PokemonProvider>
+      <LoadingProvider>
+        <PaginationProvider>
+          <div style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0px"
+          }}>
+            <Navbar/>
+              <Component {...pageProps} />
+          </div>
+        </PaginationProvider>
+      </LoadingProvider>
+    </PokemonProvider>
   );
 }
 

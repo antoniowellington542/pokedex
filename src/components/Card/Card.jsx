@@ -16,6 +16,7 @@ const Card = ({name}) =>{
     const[idPokemon, setIdPokemon] = useState([]);
     const[pokemonType, setPokemonType] = useState([]);
     const[pokemonName, setPokemonName] = useState("");
+
     useEffect(()=>{
         imgsPokemon_list();
 
@@ -30,6 +31,7 @@ const Card = ({name}) =>{
         setPokemonName(pokemons.name);
     }
     
+
     return(
         <>
             <Link href={`/pokemon/${pokemonName}`}>

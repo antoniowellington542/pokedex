@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { ListPokemons } from "./api/request.js";
-
 import Card from "../components/Card/Card";
 import Pagination from "../components/Pagination/Pagination";
-import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
+import { useLoading } from "../AppContext/LoadingContext";
+import { usePagination } from "../AppContext/PaginationContext.js";
 
 const Box = styled.div`
     margin: 40px auto;
@@ -20,66 +20,45 @@ const Box = styled.div`
 
 `
 
-const LIMIT = 28;
-const TIME_LOADING = 4;
 
 const Pokedex = () => {
 
     const [pokemons, setPokemons] = useState([]);
-    const[loading, setLoading] = useState(true);
-    const[valueBar, setValueBar] = useState(0);
-    const[offset, setOffset] = useState(0);
+    const {loading, showLoading, hideLoading} = useLoading();
+    const {index} = usePagination();
 
     
     useEffect(()=>{
-        getPokemons();
-        setLoading(true);
-        setValueBar(0);
-        reloading(); 
-    }, [offset]);
+        showLoading();
+        getPokemon();
+        time();
+    }, [index]);
 
-    const getPokemons = async () =>{
-        const pokemons_list = await ListPokemons(offset);
-        setPokemons(pokemons_list);
+    const time = ()=>{
+        const interval = setInterval(()=>{
+            clearInterval(interval)
+            hideLoading();
+        }, 3000);
+           
+    }
+    const getPokemon = async () =>{
+        const response = await ListPokemons(index);
+        setPokemons(response);
     }
 
-    const reloading = () => {
-        const interval = setInterval(()=> {
-            setValueBar(oldValue => {
-                const newValue = (oldValue + 20);
-                    
-                if(newValue >= 100){
-                    clearInterval(interval);
-                    setLoading(false);
-                }
-                return newValue;
-            })   
-        }, TIME_LOADING * 200);
-    }
-
-    if(loading){
-        return(
-            <LoadingScreen width={valueBar} />
-        );
-    }
-
-    return(
+    return loading == false ?(
         <>
+            
             <Box>
                 {pokemons.map(pokemon =>(
                     <div key={pokemon.id}>
-                        <Card name={pokemon.name} id={pokemon.id}/>
+                        <Card name={pokemon.name}/>
                     </div>
                 ))}
             </Box>
-            <Pagination 
-            limit={LIMIT} 
-            total={800} 
-            offset={offset} 
-            setOffset={setOffset}
-            />
+            <Pagination />
         </>
-    );
+    ): null
 }
 
 export default Pokedex;

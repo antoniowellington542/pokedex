@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import Link from 'next/link';
 import {useRouter} from "next/router";
 import {VscMenu} from 'react-icons/vsc';
-import AppContext from "../../AppContext/Context";
 import {
     NavbarContainer, 
     Logo, 
@@ -11,14 +10,16 @@ import {
     MenuLogo 
 } from "./Navbar.style";
 import SearchBar from "../SearchBar/SearchBar";
+import { useLoading } from "../../AppContext/LoadingContext";
 
 
 const Navbar = () => {
     
-    const {user} = useContext(AppContext);
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
-    return(
+    const{loading} = useLoading();
+
+    return !loading ? (
         <NavbarContainer>
             <Link href="/">
                 <Logo src="https://cdn-0.imagensemoldes.com.br/wp-content/uploads/2020/04/Pok%C3%A9mon-Logo-PNG-1024x768.png" />
@@ -36,7 +37,7 @@ const Navbar = () => {
                 <SearchBar/>
             </Menu>
         </NavbarContainer>
-    );
+    ):null
 }
 
 export default Navbar;

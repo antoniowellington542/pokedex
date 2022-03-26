@@ -7,13 +7,13 @@ import {
     Text 
 } from "./LoadingScreen.style";
 
-const LoadingScreen = ({width}) =>{
+const LoadingScreen = () =>{
         return(
             <ContainerLoadingScreen>
                 <LoadingImage src="https://i.imgur.com/aMz1Qtu.gif" />
                 <ContainerLoadingBar>
                     <ContainerBar>
-                        <Bar w={`${width}%`}>{width}%</Bar>
+                        <Bar>carregando</Bar>
                     </ContainerBar>
                     <Text>Loading...</Text>
                 </ContainerLoadingBar>

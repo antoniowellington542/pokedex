@@ -36,14 +36,15 @@ export const aboutPokemon = async (id) =>{
 
 export const SearchPokemon = async () =>{
   
-  const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=898`);
+  const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=898&offset=0`);
   
   const [pokemon] = await Promise.all([pokemonResponse]);
   
-      
+ 
   const pokemonJson = await pokemon.json();
-      
-  return pokemonJson;
+  
+  console.log(pokemonJson.results);
+  return pokemonJson.results;
 }
 
 

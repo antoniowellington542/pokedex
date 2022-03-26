@@ -1,17 +1,18 @@
+import { usePagination } from "../../AppContext/PaginationContext";
 import { ButtonController, ButtonPagination, ListItem, ListPagination, PaginationContainer } from "./Pagination.style";
 
 const MAX_ITEMS = 9;
 const MAX_LEFT = (MAX_ITEMS - 1)/2;
+const TOTAL = 898;
 
-const Pagination = ({total, offset, limit, setOffset}) =>{
+const Pagination = () =>{
 
-    const currentPage = offset ? (offset/limit)+1 : 1;  
-    const pages = Math.ceil(total/limit);
+    const {index, LIMIT, onPageChange} = usePagination();
+    
+    const currentPage = index ? (index/LIMIT)+1 : 1;  
+    const pages = Math.ceil(TOTAL/LIMIT);
     const first = Math.max(currentPage - MAX_LEFT, 1);
 
-    function onPageChange(page){
-        setOffset((page-1) * limit);
-    }
 
 
     return(
