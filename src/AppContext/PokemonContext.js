@@ -12,7 +12,7 @@ export default function PokemonProvider({children}){
 
     useEffect(()=>{
         getSearch();
-        getPokemon();
+    
     },[])
 
     const getSearch = async () =>{
